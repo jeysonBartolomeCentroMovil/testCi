@@ -1,0 +1,22 @@
+name: Ejecutar Script de Python
+
+on:
+  push:
+    branches:
+      - main  # o la rama que uses
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Ejecutar el script
+        run: python test.py
