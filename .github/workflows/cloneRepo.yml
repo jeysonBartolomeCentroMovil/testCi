@@ -19,4 +19,6 @@ jobs:
       with:
         requirements: requirements.txt
         update-pip: true
-    
+        
+    - name: Listar paquetes instalados
+      run: pip list
