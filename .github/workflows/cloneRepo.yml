@@ -1,5 +1,10 @@
 trigger:
-  - main  # Se activa con cambios en la rama main
+  branches:
+    include:
+      - main  # Se activa con cambios en la rama main
+  paths:
+    include:
+      - notebooks/*  # Faltaba especificar la ruta para el trigger de paths
 
 pool:
   vmImage: 'ubuntu-latest'  # También puede ser 'windows-latest'
