@@ -19,3 +19,4 @@ jobs:
       with:
         requirements: requirements.txt
         update-pip: true
+    
