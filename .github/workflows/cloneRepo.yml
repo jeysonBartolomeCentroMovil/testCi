@@ -1,4 +1,4 @@
-name: Generar y subir PDF de Notebook
+name: Mi Primer Workflow
 
 on:
   push:
@@ -10,25 +10,18 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Ejecutar comando
+      run: echo "¡Hola, GitHub Actions!"
+      
+    - name: Install Python requirements
+      uses: aabadie/action-install-python-requirements@v2.0.1
       with:
-        fetch-depth: 0
+        requirements: requirements.txt
+        update-pip: true
+        
+    - name: Listar paquetes instalados
+      run: pip list
 
-    - name: Instalar dependencias del sistema
-      run: |
-        sudo apt-get update -y
-        sudo apt-get install -y \
-          texlive-xetex \
-          texlive-fonts-recommended \
-          texlive-plain-generic \
-          pandoc
-
-    - name: Instalar dependencias de Python
-      run: |
-        pip install nbconvert pandas matplotlib
-
-    - name: Convertir notebook a PDF
-      run: |
-        jupyter nbconvert --to pdf ARIMA_TS.ipynb --no-input
-
-    - name: Listar archivos generados
-      run: ls -la
+    - name: listar repositorio
+      run: ls
