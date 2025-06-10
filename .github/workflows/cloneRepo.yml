@@ -1,27 +1,15 @@
-trigger:
-  branches:
-    include:
-      - main  # Se activa con cambios en la rama main
-  paths:
-    include:
-      - notebooks/*  # Faltaba especificar la ruta para el trigger de paths
+name: Mi Primer Workflow
 
-pool:
-  vmImage: 'ubuntu-latest'  # También puede ser 'windows-latest'
+on:
+  push:
+    branches: [ main ]
 
-steps:
-  # Paso 1: Clonar el repositorio
-  - checkout: self  # Clona automáticamente el repo
-
-  # Paso 2: Instalar dependencias desde requirements.txt (en /notebooks)
-  - script: |
-      echo "Instalando dependencias de Python..."
-      pip install -r notebooks/requirements.txt
-    displayName: 'Instalar requirements.txt'
-    workingDirectory: $(System.DefaultWorkingDirectory)  # Raíz del repo
-
-  # Paso 3 (Opcional): Verificar las dependencias instaladas
-  - script: |
-      echo "Paquetes instalados:"
-      pip list
-    displayName: 'Listar dependencias'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Ejecutar comando
+      run: echo "¡Hola, GitHub Actions!"
