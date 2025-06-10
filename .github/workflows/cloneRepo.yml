@@ -2,7 +2,7 @@ name: Mi Primer Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
 
 jobs:
   build:
@@ -13,3 +13,9 @@ jobs:
     
     - name: Ejecutar comando
       run: echo "¡Hola, GitHub Actions!"
+      
+    - name: Install Python requirements
+      uses: aabadie/action-install-python-requirements@v2.0.1
+      with:
+        requirements: requirements.txt
+        update-pip: true
