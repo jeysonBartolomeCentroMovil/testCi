@@ -22,3 +22,9 @@ jobs:
         
     - name: Listar paquetes instalados
       run: pip list
+
+    - name: Convertir notebook a PDF
+      run: |
+        sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic -y
+        pip install nbconvert
+        jupyter nbconvert --to pdf ARIMA_TS.ipynb
