@@ -1,0 +1,22 @@
+trigger:
+  - main  # Se activa con cambios en la rama main
+
+pool:
+  vmImage: 'ubuntu-latest'  # También puede ser 'windows-latest'
+
+steps:
+  # Paso 1: Clonar el repositorio
+  - checkout: self  # Clona automáticamente el repo
+
+  # Paso 2: Instalar dependencias desde requirements.txt (en /notebooks)
+  - script: |
+      echo "Instalando dependencias de Python..."
+      pip install -r notebooks/requirements.txt
+    displayName: 'Instalar requirements.txt'
+    workingDirectory: $(System.DefaultWorkingDirectory)  # Raíz del repo
+
+  # Paso 3 (Opcional): Verificar las dependencias instaladas
+  - script: |
+      echo "Paquetes instalados:"
+      pip list
+    displayName: 'Listar dependencias'
